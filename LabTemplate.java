@@ -5,9 +5,7 @@ HTTP request sent, awaiting response... 302 Found
 Location: https://raw.github.com/scottopell/cs190lab5/master/LabTemplate.java [following]
 --2013-11-13 11:46:01--  https://raw.github.com/scottopell/cs190lab5/master/LabTemplate.java
 Resolving raw.github.com... 199.27.72.133
-Connecting to raw.github.com|199.27.72.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1552 (1.5K) [text/plain]
+Connecting to r
 Saving to: 'LabTemplate.java.1'
 
      0K .                                                     100% 25.7M=0s
