@@ -1,14 +1,51 @@
---2013-11-13 11:46:01--  https://github.com/scottopell/cs190lab5/raw/master/LabTemplate.java
-Resolving github.com... 192.30.252.131
-Connecting to github.com|192.30.252.131|:443... connected.
-HTTP request sent, awaiting response... 302 Found
-Location: https://raw.github.com/scottopell/cs190lab5/master/LabTemplate.java [following]
---2013-11-13 11:46:01--  https://raw.github.com/scottopell/cs190lab5/master/LabTemplate.java
-Resolving raw.github.com... 199.27.72.133
-Connecting to r
-Saving to: 'LabTemplate.java.1'
 
-     0K .                                                     100% 25.7M=0s
+import java.net.*;
+import javax.net.ssl.*;
+import java.io.*;
 
-2013-11-13 11:46:02 (25.7 MB/s) - 'LabTemplate.java.1' saved [1552/1552]
 
+public class LabTemplate{
+
+  // All edits will be made to the main method
+  public static void main(String[] args){
+    // We can easily print out some arbitrary text here
+    System.out.println("Hello, World");
+    // But if we want to do something more interesting
+    // we can retrieve content from some website here
+    // We need to ensure that we use a url that starts with https
+    String url = "https://api.github.com/zen";
+    // We can print out the contents of any https site now!
+    System.out.println( enlightenMe(url) );
+  }
+
+  /****************************
+   * Some url's to try
+   * https://api.github.com/zen
+   *         OR
+   * https://api.github.com/octocat
+   *
+   ****************************
+  */
+
+  // You can safely ignore this method
+  public static String enlightenMe(String url){
+    try{
+      URL zen = new URL(url);
+      HttpsURLConnection conn = (HttpsURLConnection) zen.openConnection();
+      BufferedReader in = new BufferedReader( new InputStreamReader( conn.getInputStream() ) );
+      StringBuilder sb = new StringBuilder();
+      String inputLine;
+      String NEWLINE = System.getProperty("line.separator");
+      while ( (inputLine = in.readLine()) != null ){
+        sb.append(inputLine);
+        sb.append(NEWLINE);
+      }
+      return sb.toString();
+    } catch (ClassCastException e){
+      return "Did you try to use a https url?";
+    } catch (Exception e){
+      System.out.println(e.toString());
+      return "An error occurred";
+    }
+  }
+}
